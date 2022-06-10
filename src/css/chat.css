@@ -1,0 +1,190 @@
+.chat {
+  display: flex;
+  max-width: 720px;
+  width: 100%;
+  max-height: 500px;
+  height: 100%;
+  border-radius: 8px;
+  background-color: #2d2d2de0;
+  overflow: hidden;
+}
+
+/* Блок онлайн/оффлайн */ 
+
+.online {
+  width: 30%;
+  padding: 10px;
+  background-color: #1f1f1fd1;
+}
+
+.online div.online__user:nth-child(n+2) {
+  margin-top: 8px;
+}
+
+.online__title {
+  position: relative;
+  font-size: 18px;
+  font-weight: 400;
+  color: #e4d3d3;
+  /* padding-left: 10px;
+  padding-bottom: 10px; */
+  padding: 10px;
+  border-bottom: 1px solid #e4d3d3; 
+}
+
+.online__title::after {
+  position: absolute;
+  content: '';
+  top: 50%;
+  right: 5px;
+  width: 12px;
+  height: 12px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background-color: green;
+}
+
+.online__user {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 6px;
+  background-color: #333333d9;
+  border-radius: 8px;
+}
+
+.online__name {
+  font-size: 15px;
+  color: #e4d3d3;
+  text-align: left;
+}
+
+.online__status {
+  font-size: 12px;
+  color: green;
+  text-align: right;
+  margin-left: 10px;
+}
+
+/* Конец блока онлайн/оффлайн */ 
+
+
+
+/* Сообщение */
+
+.communication {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+.communication__messages {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  flex: 1 1;
+  padding-bottom: 10px;
+  padding: 4px;
+  margin: 12px 12px 0 12px;
+  border: 1px solid #6c6c6cd1;
+  border-radius: 8px;
+}
+
+.communication__messages div:nth-child(n+2) {
+  margin-top: 12px;
+}
+
+.message {
+  font-size: 14px;
+  color: #e4d3d3;
+  padding: 5px 10px;
+  width: fit-content;
+  max-width: 74%;
+  min-width: 50px;
+  text-align: right;
+  border-radius: 8px;
+  background-color: #6472e3b3;
+}
+
+.message__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 2px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid gray;
+}
+
+.message__nickname {
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.message-date {
+  font-size: 11px;
+  font-weight: 300;
+  margin-left: 10px;
+}
+
+.message-my {
+  align-self: flex-end;
+  background-color: #27852ec3;
+}
+/* Конец сообщения */
+
+
+
+/* Отправка сообщения */
+
+.communication__control {
+  padding: 12px;
+}
+
+.send__form {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.send__input-label {
+  flex-grow: 1;
+}
+
+.send__input {
+  flex-grow: 1;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: normal;
+  color: #e4d3d3;
+  padding: 10px 46px 10px 14px;
+  width: 100%;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background-color: #797575b0;
+}
+
+.send__button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  border: none;
+  outline: none;
+  margin-left: 14px;
+  /* height: 39px; */
+  height: 100%;
+  width: 39px;
+  background-color: transparent;
+  background-image: url('../img/icons/send_filled_icon.svg');
+  cursor: pointer;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 26px 26px;
+  transition: background 0.05s ease-in-out;
+}
+
+.send__button:hover {
+  background-size: 30px 30px;
+  transition: background 0.05s ease-in-out;
+}
