@@ -11,59 +11,54 @@
 </head>
 <body>
 
-  <div class="register" style="display: none;">
+  <div class="register">
     <h1 class="register__title">Представьтесь</h1>
-    <form class="register__form">
+    <form class="register__form" id="register-form">
       <label class="register__input-label">
-        <input class="register__input" type="text" name="login" id="login">
+        <input class="register__input" type="text" name="login" id="login" autocomplete="off" maxlength="50">
       </label>
       <button class="register__button" type="submit">Войти в чат</button>
     </form>
   </div>
   
-  <div class="chat">
+  <div class="chat hidden">
     <div class="online chat__online">
       <h2 class="online__title">Lekseff</h2>
 
-      <div class="online__user">
-        <p class="online__name">Lekseff</p>
-        <div class="online__status">Online</div>
-      </div>
-
-      <div class="online__user">
-        <p class="online__name">Wolf</p>
-        <div class="online__status">Online</div>
+      <div class="online__list">
+        <!-- <div class="online__user">
+          <p class="online__name">Lekseff</p>
+          <div class="online__status">Online</div>
+        </div> -->
       </div>
 
     </div>
     <div class="communication chat__communication">
+
       <div class="communication__messages">
+        <!-- <div class="communication__new-user">
+          Присоединился новый пользователь
+        </div> -->
 
-        <div class="message message-my">
-        <div class="message__header">
-          <span class="message__nickname">Lekseff</span>
-          <span class="message-date">19:30</span>   
-        </div>          
-        <p class="message__text">Привет!</p>            
-      </div>
-
-      <div class="message">
-        <div class="message__header">
-          <p class="message__nickname">Wolf</p>
-          <span class="message-date">19:30</span>   
-        </div>          
-        <p class="message__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Debitis, cupiditate!</p>            
-      </div>
+        <!-- <div class="message message-my">
+          <div class="message__header">
+            <span class="message__nickname">Lekseff</span>
+            <span class="message-date">19:30</span>
+          </div>          
+          <p class="message__text">Привет!</p>            
+        </div> -->
 
       </div>
+
       <div class="send communication__control">
-        <form class="send__form">
+        <form class="send__form" id="send-form">
           <label class="send__input-label">
-            <input class="send__input" type="text" id="send">
+            <input class="send__input" type="text" id="send" autocomplete="off" maxlength="150" placeholder="Напишите...">
           </label>
           <button type="submit" class="send__button"></button>
         </form>
       </div>
+      
     </div>
   </div>
 </body>

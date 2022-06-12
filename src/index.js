@@ -1,5 +1,10 @@
 import './css/style.css';
+// import './js/app';
+import Messenger from './js/Messenger';
 
-import './js/app';
+const register = document.querySelector('.register');
+const chat = document.querySelector('.chat');
 
-// TODO: write your code in app.js
+const app = new Messenger(register, chat);
+
+app.init();
