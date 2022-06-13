@@ -118,7 +118,8 @@
   min-width: 50px;
   text-align: left;
   margin-top: 12px;
-  border-radius: 8px;
+  /* border-radius: 8px; */
+  border-radius: 9px 9px 9px 0;
   word-wrap: break-word;
   background-color: #6472e3b3;
 }
@@ -147,6 +148,7 @@
   align-self: flex-end;
   text-align: right;
   background-color: #27852ec3;
+  border-radius: 9px 9px 0 9px;
 }
 
 .communication__new-user {

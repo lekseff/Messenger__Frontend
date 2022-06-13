@@ -1,5 +1,6 @@
 @import url('./login.css');
 @import url('./chat.css');
+@import url('./tooltip.css');
 
 * {
 	padding:0;

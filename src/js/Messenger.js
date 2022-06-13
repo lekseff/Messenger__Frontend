@@ -1,4 +1,6 @@
-/* eslint-disable class-methods-use-this */
+/* eslint-disable no-console */
+import { createPopper } from '@popperjs/core';
+
 export default class Messenger {
   constructor(register, chat) {
     this.register = register;
@@ -20,7 +22,7 @@ export default class Messenger {
   }
 
   init() {
-    this.connectWebsocketServer();
+    this.connectWebsocketServer(); // Подключение к серверу
   }
 
   /**
@@ -83,7 +85,7 @@ export default class Messenger {
       };
       this.sendMessage(data); // Отправляем данные на сервер
     } else {
-      console.warn('Пустое поле'); //! Ошибка пустое поле
+      this.showErrorTooltip('Напишите свое имя'); //! Ошибка пустое поле
     }
   }
 
@@ -101,7 +103,7 @@ export default class Messenger {
       const onlineList = data.online.filter((item) => item.participant !== this.youName);
       this.onlineList.innerHTML = ''; // Очищаем список
       onlineList.forEach((user) => {
-        const onlineEl = this.createOnlineCard(user);
+        const onlineEl = this.constructor.createOnlineCard(user);
         this.onlineList.append(onlineEl);
       });
       // Отправляем данные
@@ -111,13 +113,13 @@ export default class Messenger {
         message: data.message,
       });
     } else {
-      console.warn(data.message); //! Ошибка имя занято
+      this.showErrorTooltip(data.message); //! Ошибка имя занято
     }
   }
 
   /**
    * Событие отправить сообщение
-   * @param {*} event -
+   * @param {*} event -event
    */
   sendMessageHandler(event) {
     event.preventDefault();
@@ -131,9 +133,13 @@ export default class Messenger {
     this.sendForm.reset();
   }
 
+  /**
+   * Добавляем сообщение в чат
+   * @param {*} data - данные с сервера
+   */
   addChatMessage(data) {
     const { participant, message, date } = data;
-    const messageEl = this.createChatMessage(participant, message, date);
+    const messageEl = this.constructor.createChatMessage(participant, message, date);
     if (participant === this.youName) {
       messageEl.classList.add('message-my');
     }
@@ -147,7 +153,7 @@ export default class Messenger {
   addNewParticipant(data) {
     // Если свое имя не добавляем в список онлайн
     if (data.participant !== this.youName) {
-      const onlineEl = this.createOnlineCard(data);
+      const onlineEl = this.constructor.createOnlineCard(data);
       this.onlineList.append(onlineEl);
     }
     this.showInfoMessage(data.message);
@@ -155,7 +161,7 @@ export default class Messenger {
 
   /**
    * Действие при отключении участника
-   * @param {*} data -
+   * @param {*} data - данные с сервера
    */
   offlineParticipant(data) {
     const allOnline = Array.from(this.onlineList.children); // Список всех онлайн участников в html
@@ -172,7 +178,7 @@ export default class Messenger {
    * @param {*} message - текст сообщения
    */
   showInfoMessage(message) {
-    const chatMessage = this.createNewParticipant(message);
+    const chatMessage = this.constructor.createNewParticipant(message);
     this.messages.prepend(chatMessage); // Инфо о отключении участника
   }
 
@@ -181,7 +187,7 @@ export default class Messenger {
    * @param {*} name -  имя
    * @returns - html элемент
    */
-  createOnlineCard(data) {
+  static createOnlineCard(data) {
     const div = document.createElement('div');
     div.classList.add('online__user');
     div.dataset.id = data.id;
@@ -201,7 +207,7 @@ export default class Messenger {
    * @param {*} name - имя пользователя
    * @returns - html элемент
    */
-  createNewParticipant(message) {
+  static createNewParticipant(message) {
     const div = document.createElement('div');
     div.classList.add('communication__new-user');
     div.textContent = message;
@@ -215,7 +221,7 @@ export default class Messenger {
    * @param {*} date - дата сообщения
    * @returns - html элемент
    */
-  createChatMessage(participant, message, date) {
+  static createChatMessage(participant, message, date) {
     const messageEl = document.createElement('div');
     messageEl.classList.add('message');
     const messageHeaderEl = document.createElement('div');
@@ -234,5 +240,32 @@ export default class Messenger {
     messageEl.append(messageHeaderEl);
     messageEl.append(messageTextEl);
     return messageEl;
+  }
+
+  /**
+   * Показывает сообщение об ошибке
+   * @param {*} text - текст сообщения
+   */
+  showErrorTooltip(text) {
+    const element = this.register.querySelector('#login');
+    const tooltip = this.register.querySelector('#error-tooltip');
+    const popperInstance = createPopper(element, tooltip, {
+      placement: 'top',
+      modifiers: [
+        {
+          name: 'offset',
+          options: {
+            offset: [0, 6],
+          },
+        },
+      ],
+    });
+    this.register.querySelector('#error-message').textContent = text;
+    tooltip.setAttribute('data-show', '');
+    popperInstance.update();
+    element.focus();
+    setTimeout(() => {
+      tooltip.removeAttribute('data-show');
+    }, 2800);
   }
 }
