@@ -1,6 +1,3 @@
-![example workflow](https://github.com/lekseff/Tickets_Frontend/actions/workflows/deploy.yml/badge.svg)
-
-
 ## Чат
 
 ### Легенда
