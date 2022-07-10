@@ -6,13 +6,7 @@
   "scripts": {
     "start": "webpack serve --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
-    "lint": "eslint .",
-    "doc": "jsdoc -c jsdoc.conf.json",
-    "preshow:coverage": "npm run coverage",
-    "preshow:doc": "npm run doc",
-    "show:doc": "live-server doc",
-    "preshow:dist": "npm run build",
-    "show:dist": "live-server dist"
+    "lint": "eslint ."
   },
   "author": "Aleksey Zayachnikov",
   "license": "MIT",

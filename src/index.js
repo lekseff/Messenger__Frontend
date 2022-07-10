@@ -1,10 +1,6 @@
 import './css/style.css';
-// import './js/app';
-import Messenger from './js/Messenger';
+import Bot from './js/App';
 
-const register = document.querySelector('.register');
-const chat = document.querySelector('.chat');
-
-const app = new Messenger(register, chat);
-
+const markup = document.querySelector('#bot');
+const app = new Bot(markup);
 app.init();

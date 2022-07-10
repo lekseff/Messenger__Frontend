@@ -1,6 +1,5 @@
-
-#error-tooltip {
-  /* display: none; */
+.error-tooltip {
+  display: none;
   background: #fc6a6a;
   color: #ffffff;
   padding: 8px 16px;
@@ -9,35 +8,31 @@
 	font-weight: 400;
   border-radius: 8px;
 	z-index: 10;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
 }
 
-#error-tooltip[data-show] {
-  /* display: block; */
-  opacity: 1;
-  transition: opacity 0.3s ease-in-out;
+.error-tooltip[data-show] {
+  display: block;
 }
 
-#arrow,
-#arrow::before {
+.arrow,
+.arrow::before {
   position: absolute;
   width: 8px;
   height: 8px;
   background: inherit;
 }
 
-#arrow {
+.arrow {
   visibility: hidden;
 }
 
-#arrow::before {
+.arrow::before {
   visibility: visible;
   content: '';
   transform: rotate(45deg);
 }
 
-#error-tooltip[data-popper-placement^='top'] > #arrow {
+.error-tooltip[data-popper-placement^='top'] > .arrow {
   bottom: -4px;
 }
 
